@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大模型分布式训练 | Star's Blog</title><meta name="author" content="Star"><meta name="copyright" content="Star"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型分布式训练">
+<meta property="og:url" content="https://jinxinwu.github.io/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:site_name" content="Star&#39;s Blog">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jinxinwu.github.io/img/loopy.png">
+<meta property="article:published_time" content="2026-04-18T06:54:55.000Z">
+<meta property="article:modified_time" content="2026-04-18T07:47:46.953Z">
+<meta property="article:author" content="Star">
+<meta property="article:tag" content="分布式训练">
+<meta property="article:tag" content="大模型训练">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jinxinwu.github.io/img/loopy.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "大模型分布式训练",
+  "url": "https://jinxinwu.github.io/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/",
+  "image": "https://jinxinwu.github.io/img/loopy.png",
+  "datePublished": "2026-04-18T06:54:55.000Z",
+  "dateModified": "2026-04-18T07:47:46.953Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Star",
+      "url": "https://jinxinwu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jinxinwu.github.io/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大模型分布式训练',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/loopy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Star's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">大模型分布式训练</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">大模型分布式训练</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-18T07:47:46.953Z" title="更新于 2026-04-18 15:47:46">2026-04-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">大模型训练</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">6</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="5ca131d17e03fdfc7e236a64671eb11657b0518fc83607a02598fc239ae12f2f">4630436162ade97ba2718b7d0c4b3b63f9bb9526fb143e931c3fc38914af1d9190808b819c848bac5188334cb009fc581b47d74c735f9c42fbb1acc7c6e862bc462658ca68edd4b52d44941fc77b9fee14bf97037f627edab9d266986f091afe2307831c25dc37b14e6ad175fa94cae6486b265ed61ca948dd297238443dc1c946842ac85b03f21913afef694a2b8a60cf3f14381df83fe554b342042ad3bae658f6a49208a25efabf35d9763d6b22d47350e44a6ada82c23f87e15ff4d8d727e7882ad3c694d6584ddb9bcc9b1612bb31c4b4da7186b507bd6cdab16846d7e851b150291fde21b57820e3001d9ad4d6dd5bd86780ecb7b232e413a2de729bfdd88d46e21b81cf42eca566ee80f7c93c926231e20687133ee1d0710548cc037fbbcbcd068fed308a465d6a623be5092680f40a29e3dec8b9cb6a2e40ca54b057861380687349d6dec20043f5576da6ebd1c38e291050679941c39d335d0fee0a4d571c6effdcebd60597218f31a780d1ff20580e5667b0b62424ca3d7e26413e203eea1baee0a9d7acea918d485fac6704a92f555b2e516de533eb86203411f8934570641f2f20b3694f3029c305dcfb5f89664e97f413b9f8e5bdf0c7f4bc3332e067eaa1e3c76c131c8e766c88d36210655b85222ed026949e82516872ca2c3caf3da9e06add0f9151af3f22f4a9b443be2c2d4fb43f3e9dcae7f171aae63a2b1f773e1082761333d1ad5301062ef054ff8d0c225ccbde8fc2d23c495ff7b675edd5f42e9f3092eba24691134ae000c46d9909b8bdf3ac01ed8441513bb64bb9a649b0551abeb449b104944801dc7f41dd939bd2ea3780f7983e5af3064bf8835316cbf4622e5cb8087d24b66242f0f6f0f0b090e2a7303a607ee9baf76fea480a54a6e614107b1b68af3b97535e1c12f6c1d3c5412632bab0e866660939501c27ec94e2c91801b36f7bee2121cc4ec089a996eeba1641915ed49d4d4f46011f69bc851eaed88ed936c806f12c84366885433d6a2f204943b0e7e8ba2310afb1bfb7a8e99634a22364243026d4a227b16589bd09b1f35dbd5e68bb6400bdae3b44241980cff0acec74c7a94692ee23d6fe4b8e683151ec7c99daf1a055c2075f701382faf4396198d657ca1e48952acac74f861adeb71847ffc33c6261730bccbd335a9ff8a723c943185235548933dff7722c87fa00b5af4d76b4d7387b862f2af1ceca628a2545c9f01316ac8b26c28bf31ee8ba3b28072f69c2431994cff50a7c3832cc6034f9d44d48cc8e2923e51cc04e17abe4a4d765a58c79ac69649c1935beddd7eca5589c8ea46847dd746d1446321a1deed0617feb10e4fed8031a4cd7b698cb7f2c85debbb49bf94bf4889e0fff8d3b52b5710912e1f646fff8deebb9aaed71f0a8b8cd4d464d98d8bdd79be25d496fd561a983fd8a310e3735a0dcb0e7aba2fe229de98fb9c79dec5221a04a82f4e002d50948da9c5a9c33b350791b8d7af8fe2618695573b1a6a6193d61bb952fa6dc86795a996deb87529febdbb8d5325ef93eec2cfcb79cf2a334437ea74c980bdf82f5903adfe6defee5502b29962f0000540ede56ecf9e1e81daf48200200349dcb3447dcdb754f40bdb82163fc0ca26ed3153f9ecf23529b1a30abefaa94db261494eda60ecc68e8a85c558d1f775c4f598174baabe68e57d48fa5140fa9b49381fb8e5a4b50743472560d63d565055b15dee7d5544c744ed1c564db104092077d6aaa235ddf9d65716a56c911b2dc43007a85334076718a130afbe21066c26554108b4d3d49bb8bd13a1e9871f8e331eba33fa11ff9251f67281502a967c8584959e2d4131698b4563e1969fcc12749245ccf4a363d235b2ecfde6f890c89c4de355531b64cc69e721f3340a5f8c391fbb97c258203e71fdac1eeb713c8270ee8ddba6527e0449d99dae539ed3dae11b82420bac21a4eecc48bb4e4de2babd2bd4a64e0268a46555cf1a265fc0dcf66f5036ee2f998a1e8d26dc161d838dbcc5226aa0eacbf14ac78689bfd8ec98327579e167bb438497b515e02596d596dbed96bc459e1a58a54b8de1079d7b19f070b859ee6897ccf7be42a91bbea57e199675d7f21c71d5b23d7c684e064b3a45c8cff9ed18f627c12a7b0301d765af5a8c7b5878f6cda60c9ca9d9bfc4ff3b60f418bb529e03f70bada7d085bdbab51a2b6bb6e7c407962923baa1c0a5112106c187de2a21f7ab5f4529e1c7764714ddf95ba22652c6ffe97b888f65e8c4feeca95d2399757b423304052f00a7b0be6dad3e6201d9f6caec3ec63992da8ae63bde4e19a1fc3a4ecbc018e04e3d5a2ac91a0ec04960982a69320a0d1e357ebdb472b2b4d1249413bcbbab388e89d9f64d7c200b91451e1c47ccacba80fdbf9750d0ffd7d133c7cc25ac043103655fea5e88975221bcbbc6e261355a3415f746958bc9563ead6f7a7aced60bf1ee682a34123d27777ded117804ece110aa94d805a2e7b536b5bad01ea29055982817734be40ae6ea750818f9592679de86858f4170a25496f440f665687b963e1774fd69a5be7966bd2ba1b00332fe090a52162723f79a529966cb4970a56b2add8a1ced715328849054adc9b021d4533dee4a2a0dcbfafe5939e250baff1ee3c5124d2ccd7f444a68c16846199c5362aad5a03fd1c200d7d4260f20b67e7baf878ee35eb99d0fd1d2ddcc99fe4ae5f0ce5e9c1d9fb26119f0bf550a4a8865087d2d45ff17ec6b724e13c496179e4c2c425bca32400c4246a14d35a17d06688cbd6f7a05c5d6900f085a21f60c22d4d7647f5c3e2d149964ce79ea99558fcd04d990e01178615f5e5fe154a3b841f29ef5781adbde2c3d63a1ba60aea8b5f202e9240612eed53d66cdae60b10aeac775a465bee9355fa2b7c793b86370d3d675a8cf0c474b5051dfec04be1fffe524f6e31716817f05a1c725cd22eed6af7e7b5c9f173d69fa3d5b10b602453894cdf2abf226aec0ac456500ffc902bc9681274cef61b45b2275255726fd6bc0b2d16ed4c7420d1dfdd08e65ee0e683ce45fd86c2e128c5f7f34a34669da3892cf13c6bb57dff1473a33481f360ec18e5b94898d9fbc164ea014da2ae3246c1789d41135e8b223d4f7d9f26e4baa87678bf963a9cdf98012e76249a7384f182ac5c6b5245fd79975e85f7c877fbd167a09df89b891863b11a705c3196c3a912dc22e68a0e4fb3f7b3598968640eabe1b4a6a74ca85a08cfa8ac637e00b352a17ce1f43b1a14169fac563b3233085ae197783f5dbb217473373c97a4ea801ae1f959100370d879650a636a712f7eed318b9238a924b31f7a5642cad0a716708f611afc8704219ba2009aa268742ce4d31d59cd9e4e5f22f3dc0b003261cdb322df06cada405b07a170493f147fdce0725eaef6dd74299633bb8e9b072e068173c136284733a92311dfa7e021812dd4ed74c900d914088b1e4daace9cf9307d271615860e67f1de7f42c5cf2a4771e5ee7dda5aeeff9947e8b5a91cabc378523578dba8e0910fd9c88efd6a31130bb612a3</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jinxinwu.github.io">Star</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jinxinwu.github.io/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/">https://jinxinwu.github.io/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jinxinwu.github.io" target="_blank">Star's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/">分布式训练</a><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">大模型训练</a></div><div class="post-share"><div class="social-share" data-image="/img/loopy.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/18/LeetCode/" title="LeetCode 刷题笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">LeetCode 刷题笔记</div></div><div class="info-2"><div class="info-item-1">Python常用数据结构与算法基本数据结构list - 列表    函数/方法 作用 时间复杂度 刷题场景举例     len(lst) 获取列表长度  滑动窗口（判断窗口大小）、数组遍历   lst.append(x) 尾部添加元素  结果收集（如滑动窗口最大值存入ans）   lst.pop() 尾部弹出元素 $O(1)$ 栈/队列模拟（默认弹最后，pop(0) 是 $O(n)$ ）   lst.pop(i) 弹出指定下标元素  单调队列（移除窗口外元素）   lst.sort() 原地排序（Timsort） $O(n log n)$ 数组排序、TopK问题预处理   lst.reverse() 原地反转列表  回文判断、反转数组   lst.index(x) 查找元素x的第一个下标（无则报错）  找元素位置、子数组匹配   lst.count(x) 统计元素x出现次数  频次统计、多数元素问题   lst[:] 列表切片（浅拷贝）  子数组/子串提取（如最小覆盖子串结果）   lst.extend(iter) 批量添加可迭代对象元素  合并多个列表     二维数组按照首元...</div></div></div></a><a class="pagination-related" href="/2026/04/18/Hexo/" title="Hexo/Butterfly 常用教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hexo/Butterfly 常用教程</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. 快速开始创建新文章1$ hexo new [layout] &lt;title&gt; More info: Writing 清理静态文件123$ hexo clean$ # 缩写$ hexo cl 生成静态文件123$ hexo generate$ # 缩写$ hexo g More info: Generating 本地运行服务器123$ hexo server$ # 缩写$ hexo s More info: Server 远程部署123$ hexo deploy$ # 缩写$ hexo d More info: Deployment </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/loopy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Star</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jinxinwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DP"><span class="toc-number">1.</span> <span class="toc-text">DP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DDP"><span class="toc-number">2.</span> <span class="toc-text">DDP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DeepSpeed-ZeRO-1"><span class="toc-number">3.</span> <span class="toc-text">DeepSpeed ZeRO-1</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/18/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83/" title="大模型分布式训练">大模型分布式训练</a><time datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/18/LeetCode/" title="LeetCode 刷题笔记">LeetCode 刷题笔记</a><time datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/18/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%8E%8B%E6%A0%91%E6%A3%AE/" title="强化学习 - 王树森">强化学习 - 王树森</a><time datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/18/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%87%AA%E8%AE%B2/" title="强化学习 - 自学笔记">强化学习 - 自学笔记</a><time datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/18/Hexo/" title="Hexo/Butterfly 常用教程">Hexo/Butterfly 常用教程</a><time datetime="2026-04-18T02:36:44.560Z" title="发表于 2026-04-18 10:36:44">2026-04-18</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Star</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="Search..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
