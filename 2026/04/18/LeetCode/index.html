@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LeetCode 刷题笔记 | Star's Blog</title><meta name="author" content="Star"><meta name="copyright" content="Star"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python常用数据结构与算法基本数据结构list - 列表    函数&#x2F;方法 作用 时间复杂度 刷题场景举例     len(lst) 获取列表长度  滑动窗口（判断窗口大小）、数组遍历   lst.append(x) 尾部添加元素  结果收集（如滑动窗口最大值存入ans）   lst.pop() 尾部弹出元素 $O(1)$ 栈&#x2F;队列模拟（默认弹最后，pop(0) 是 $O(n)$ ）   ls">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LeetCode 刷题笔记 | Star's Blog</title><meta name="author" content="Star"><meta name="copyright" content="Star"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python常用数据结构与算法基本数据结构list - 列表    函数&#x2F;方法 作用 时间复杂度 刷题场景举例     len(lst) 获取列表长度  滑动窗口（判断窗口大小）、数组遍历   lst.append(x) 尾部添加元素  结果收集（如滑动窗口最大值存入ans）   lst.pop() 尾部弹出元素 O(1) 栈&#x2F;队列模拟（默认弹最后，pop(0) 是 O(n) ）   lst.po">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 刷题笔记">
 <meta property="og:url" content="https://jinxinwu.github.io/2026/04/18/LeetCode/index.html">
 <meta property="og:site_name" content="Star&#39;s Blog">
-<meta property="og:description" content="Python常用数据结构与算法基本数据结构list - 列表    函数&#x2F;方法 作用 时间复杂度 刷题场景举例     len(lst) 获取列表长度  滑动窗口（判断窗口大小）、数组遍历   lst.append(x) 尾部添加元素  结果收集（如滑动窗口最大值存入ans）   lst.pop() 尾部弹出元素 $O(1)$ 栈&#x2F;队列模拟（默认弹最后，pop(0) 是 $O(n)$ ）   ls">
+<meta property="og:description" content="Python常用数据结构与算法基本数据结构list - 列表    函数&#x2F;方法 作用 时间复杂度 刷题场景举例     len(lst) 获取列表长度  滑动窗口（判断窗口大小）、数组遍历   lst.append(x) 尾部添加元素  结果收集（如滑动窗口最大值存入ans）   lst.pop() 尾部弹出元素 O(1) 栈&#x2F;队列模拟（默认弹最后，pop(0) 是 O(n) ）   lst.po">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jinxinwu.github.io/img/loopy.png">
 <meta property="article:published_time" content="2026-04-18T06:54:55.000Z">
-<meta property="article:modified_time" content="2026-04-18T07:33:04.548Z">
+<meta property="article:modified_time" content="2026-04-19T05:41:34.071Z">
 <meta property="article:author" content="Star">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="刷题笔记">
@@ -19,7 +19,7 @@
   "url": "https://jinxinwu.github.io/2026/04/18/LeetCode/",
   "image": "https://jinxinwu.github.io/img/loopy.png",
   "datePublished": "2026-04-18T06:54:55.000Z",
-  "dateModified": "2026-04-18T07:33:04.548Z",
+  "dateModified": "2026-04-19T05:41:34.071Z",
   "author": [
     {
       "@type": "Person",
@@ -160,7 +160,7 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/loopy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Star's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">LeetCode 刷题笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">LeetCode 刷题笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-18T07:33:04.548Z" title="更新于 2026-04-18 15:33:04">2026-04-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LeetCode/">LeetCode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Python常用数据结构与算法"><a href="#Python常用数据结构与算法" class="headerlink" title="Python常用数据结构与算法"></a>Python常用数据结构与算法</h1><h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><h3 id="list-列表"><a href="#list-列表" class="headerlink" title="list - 列表"></a>list - 列表</h3><div class="table-container">
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/loopy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Star's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">LeetCode 刷题笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">LeetCode 刷题笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-18T06:54:55.000Z" title="发表于 2026-04-18 14:54:55">2026-04-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-19T05:41:34.071Z" title="更新于 2026-04-19 13:41:34">2026-04-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LeetCode/">LeetCode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Python常用数据结构与算法"><a href="#Python常用数据结构与算法" class="headerlink" title="Python常用数据结构与算法"></a>Python常用数据结构与算法</h1><h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><h3 id="list-列表"><a href="#list-列表" class="headerlink" title="list - 列表"></a>list - 列表</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -186,8 +186,8 @@
 <tr>
 <td><code>lst.pop()</code></td>
 <td>尾部弹出元素</td>
-<td>$O(1)$</td>
-<td>栈/队列模拟（默认弹最后，<code>pop(0)</code> 是 $O(n)$ ）</td>
+<td><script type="math/tex">O(1)</script></td>
+<td>栈/队列模拟（默认弹最后，<code>pop(0)</code> 是 <script type="math/tex">O(n)</script> ）</td>
 </tr>
 <tr>
 <td><code>lst.pop(i)</code></td>
@@ -198,7 +198,7 @@
 <tr>
 <td><code>lst.sort()</code></td>
 <td>原地排序（Timsort）</td>
-<td>$O(n log n)$</td>
+<td><script type="math/tex">O(n log n)</script></td>
 <td>数组排序、TopK问题预处理</td>
 </tr>
 <tr>
@@ -411,7 +411,7 @@
 </tbody>
 </table>
 </div>
-<h3 id="deque-双端队列"><a href="#deque-双端队列" class="headerlink" title="deque - 双端队列"></a>deque - 双端队列</h3><p><strong>注意时空复杂度</strong>：比如列表<code>pop(0)</code>是$O(n)$，刷题时优先用$O(1)$的<code>deque.popleft()</code>。</p>
+<h3 id="deque-双端队列"><a href="#deque-双端队列" class="headerlink" title="deque - 双端队列"></a>deque - 双端队列</h3><p><strong>注意时空复杂度</strong>：比如列表<code>pop(0)</code>是<script type="math/tex">O(n)</script>，刷题时优先用<script type="math/tex">O(1)</script>的<code>deque.popleft()</code>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line">q = deque()</span><br></pre></td></tr></table></figure>
 <div class="table-container">
 <table>
@@ -445,7 +445,7 @@
 <tr>
 <td><code>q.popleft()</code></td>
 <td>头部弹出元素</td>
-<td>$O(1)$</td>
+<td><script type="math/tex">O(1)</script></td>
 <td>队列模拟、滑动窗口（单调队列移除左边界）</td>
 </tr>
 <tr>
@@ -531,13 +531,13 @@
 <tr>
 <td><code>heapq.heapify(lst)</code></td>
 <td>原地将列表转为堆</td>
-<td>$O(n)$</td>
+<td><script type="math/tex">O(n)</script></td>
 <td>初始化堆（如滑动窗口前k个元素建堆）</td>
 </tr>
 <tr>
 <td><code>heapq.nlargest(k, lst)</code></td>
 <td>获取列表中前k个最大元素</td>
-<td>$O(n log k)$</td>
+<td><script type="math/tex">O(n log k)</script></td>
 <td>TopK问题（比排序更高效）</td>
 </tr>
 <tr>
